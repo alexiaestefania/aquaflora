@@ -1,0 +1,27 @@
+{% extends "../base.html" %}
+{% load static %}
+
+{% block title %}Livraria Aquaflora | Erro de Pagamento.{% endblock %}
+
+
+
+{% block conteudo %}
+<div class="container-fluid">
+  <div class="row no-gutter">
+    <div class="col-md-12">
+      <div class="login d-flex align-items-center py-5">
+        <div class="container">
+        <h1>Erro de Pagamento.</h1>
+        <p>Seu pagamento foi cancelado.</p>
+        <hr>
+        <a role="button" href={% url 'checkout:paginacheckout' %} class="btn btn-light fw-bold" type="button">Voltar ao checkout</a>
+        <a role="button" href={% url 'carrinho:carrinhoresumo' %} class="btn btn-light fw-bold" type="button">Voltar ao carrinho</a>
+        <a role="button" href={% url 'aquaflorastore:allproducts' %} class="btn btn-light fw-bold" type="button">Voltar à loja</a>
+        <a role="button" href={% url 'aquaflorastore:allproducts' %} class="btn btn-light fw-bold" type="button">Ver Seus Pedidos</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

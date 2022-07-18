@@ -1,0 +1,120 @@
+{% extends "../base.html" %}
+{% load static %}
+{% block title %}Livraria Aquaflora | Seus pedidos{% endblock %}
+{% block conteudo %}
+<main class="pt-5">
+    <div class="container" style="max-width: 1600px">
+        <h1 class="h2">Seus Pedidos na Aquaflora</h1>
+        <br>
+        <hr class="mt-0 mb-4">
+
+        {% for pedido in pedidos %}
+
+        <article class="card mb-3">
+            <div class="card-body">
+                <header class="d-md-flex">
+                    <div class="flex-grow-1">
+                        <h6 class="mb-0">
+
+                            Pedido número {{ pedido.id }} | <i class="dot"></i>
+                            <span class="text-primary">{{ pedido.get_statuspgto_display }}</span>
+                        </h6>
+                        <span>Criado em: {{ pedido.criadoem }}</span>
+                    </div>
+                    <div>
+
+                        {% if pedido.statuspgto == 'PEND' %}
+                        <a href="{% url 'pedidos:pagar_pedido' pedido.id %}"
+                            class="btn btn-sm btn-success">Pagar </a>
+                            {% endif %}
+                             
+                        {% if pedido.pode_reembolsar %}
+                            <a href="{% url 'pedidos:cancelar_pedido' pedido.id %}"
+                                class="btn btn-sm btn-danger">Cancelar</a>
+
+                        {% endif %}
+
+
+                        {% if pedido.statusentrega == 'ENCM' %}<a href="#"
+                            class="btn btn-sm btn-primary">Rastreamento</a>{% endif %}
+                    </div>
+                </header>
+
+                <hr>
+                <div class="row">
+                    <div class="col-md-4 border-start">
+                        <p class="mb-0 text-muted">
+                            Endereço de Entrega:
+                        </p>
+                        <p class="m-0">
+                            {{ pedido.userEnderecoEntrega.en_nomecompleto }}
+                            <br>
+                            CEP: {{pedido.userEnderecoEntrega.en_cep}}
+                            <br>
+                            {{ pedido.userEnderecoEntrega.en_rua }}, {{ pedido.userEnderecoEntrega.en_bairro }},
+                            {{ pedido.userEnderecoEntrega.en_cidade }} - {{ pedido.userEnderecoEntrega.en_estado }}.
+                            <br>
+                            {{ pedido.userEnderecoEntrega.en_compl }}
+
+                        </p>
+                    </div>
+                    <!-- col.// -->
+                    <div class="col-md-4 border-start">
+                        <p class="mb-0 text-muted">
+                            Entrega:
+                        </p>
+                        <p class="m-0">
+                            Frete: {{ pedido.userFrete.FreteNome}}
+                            <br>
+                            Status da Entrega: <span class="text-primary">{{ pedido.get_statusentrega_display }}</span>
+
+                        </p>
+                    </div>
+                    <!-- col.// -->
+                    <div class="col-md-4 border-start">
+                        <p class="mb-0 text-muted">
+                            Pagamento:
+                        </p>
+                        Total pago: R$ {{ pedido.valorpgto }}
+                        </p>
+                    </div>
+                </div>
+                <!-- row.// -->
+                <hr>
+
+                <ul class="row">
+
+                    {% for item in pedido.Itens.all %}
+
+                    <li class="col-lg-4 col-md-6" style='list-style: none; max-width=150px;'>
+                        <div class="itemside mb-3">
+                            <div class="aside">
+
+                                <img src='{{ item.produto.img_1.url }}' class="img-sm rounded border" width="72"
+                                    height="72">
+
+                        </div>
+                            
+                            <div class="info">
+                                <p class="title">
+                                    {{ item.produto.livro_nome }}
+                                </p>
+                                <p class='text-muted'>{{item.qtdd}} por {{item.preco}}</p>
+                            </div>
+                        </div>
+                    </li>
+
+                    {% endfor %}
+
+                </ul>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+    </div>
+    </div>
+    </div>
+</main>
+
+
+{% endblock %}

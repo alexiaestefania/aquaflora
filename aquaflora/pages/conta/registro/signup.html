@@ -1,0 +1,81 @@
+{% extends "../../base.html" %}
+{% load static %}
+{% block title %}Livraria Aquaflora | Criar Conta {% endblock %}
+
+{% block conteudo %}
+
+<section class="vh-100">
+  <div class="conteudo py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-xl-10">
+        <div class="logincard" style="border-radius: 1rem;">
+          <div class="row g-0">
+            <div class="col-md-6 col-lg-5 d-none d-md-block">
+              <img src="{% static "cover.jpeg" %}" alt="login form"
+                class="img-fluid" style="border-radius: 1rem 0 0 1rem;"
+              />
+            </div>
+            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+              <div class="card-body p-4 p-lg-5 text-black">
+
+                  <div class="d-flex align-items-center mb-3 pb-1">
+                    
+                    <span class="logintext h1 fw-bold mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-flower2" viewBox="0 0 16 16"><path d="M8 16a4 4 0 0 0 4-4 4 4 0 0 0 0-8 4 4 0 0 0-8 0 4 4 0 1 0 0 8 4 4 0 0 0 4 4zm3-12c0 .073-.01.155-.03.247-.544.241-1.091.638-1.598 1.084A2.987 2.987 0 0 0 8 5c-.494 0-.96.12-1.372.331-.507-.446-1.054-.843-1.597-1.084A1.117 1.117 0 0 1 5 4a3 3 0 0 1 6 0zm-.812 6.052A2.99 2.99 0 0 0 11 8a2.99 2.99 0 0 0-.812-2.052c.215-.18.432-.346.647-.487C11.34 5.131 11.732 5 12 5a3 3 0 1 1 0 6c-.268 0-.66-.13-1.165-.461a6.833 6.833 0 0 1-.647-.487zm-3.56.617a3.001 3.001 0 0 0 2.744 0c.507.446 1.054.842 1.598 1.084.02.091.03.174.03.247a3 3 0 1 1-6 0c0-.073.01-.155.03-.247.544-.242 1.091-.638 1.598-1.084zm-.816-4.721A2.99 2.99 0 0 0 5 8c0 .794.308 1.516.812 2.052a6.83 6.83 0 0 1-.647.487C4.66 10.869 4.268 11 4 11a3 3 0 0 1 0-6c.268 0 .66.13 1.165.461.215.141.432.306.647.487zM8 9a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                    </svg> Aquaflora</span>
+                  </div>
+
+                  <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Crie sua conta pessoal.</h5>
+
+                  <form class="account-form p-4 rounded col-lg-10 mx-auto" action="." method="post">
+                    {% csrf_token %}
+
+                    {% if form.errors %}
+                        <p>Por favor corrija os erros abaixo:</p>
+                        {% for field in form %}
+                            {% if field.errors %}
+                                <div class="alert alert-primary" role="alert">
+                                    {{ field.label }}: {{ field.errors|striptags }}
+                                </div>
+                            {% endif %}
+                         {% endfor %}
+                    {% endif %}
+                  
+                    <div class="form-group">
+                        <label>{{ form.username.label }} <span class="text-muted small">(Obrigatório)</span></label>
+                        {{ form.username }}
+                    </div>
+
+                    <div class="form-group">
+                        <label>{{ form.email.label }} <span class="text-muted small">(Obrigatório)</span></label>
+                        {{ form.email }}
+                    </div>
+
+                    <div class="form-group">
+                        <label>{{ form.password.label }}
+                        <span class="text-muted mb-4"> <span class="text-muted small">(No mínimo oito caracteres, com no mínimo um numérico)</span></label>
+                        {{ form.password }}
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>{{ form.password2.label }} </label>
+                        {{ form.password2 }}
+                    </div>
+        
+
+                    <div class='d-grip gap-2'>
+                    
+                    <button class="btn btn-primary btn-block py-2 mb-4 mt-5 fw500 w-100" type="submit">Criar Conta</button>
+                    <div class="text-center">Já tem uma conta? <a href="{% url 'conta:login' %}"> Faça login aqui.</a></div> 
+                    </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% endblock %}

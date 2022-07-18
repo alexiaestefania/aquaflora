@@ -1,0 +1,25 @@
+
+{% extends "../base.html" %}
+{% load static %}
+{% block title %}Livraria Aquaflora | Sua Conta{% endblock %}
+
+{% block conteudo %}
+
+<main class="pt-5">
+    <div class="container" style="max-width: 1600px"> 
+        <div class="profcard perfilheader row justify-content-center align-items-center">
+        <h2>Tem certeza?</h2>
+        <p>A desativação de sua conta é permanente! Se realmente deseja excluir sua conta Aquaflora, clique <a href="{% url 'conta:excluir_perfil' %}">neste link</a>.
+
+        <p>
+        <a class="btn btn-primary btn-block" role="button" href="{% url 'conta:perfil' %}">Voltar para seu perfil</a>
+        </p> 
+
+        </div>
+    </div>
+</main>
+
+
+
+
+{% endblock %}

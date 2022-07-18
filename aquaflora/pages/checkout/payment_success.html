@@ -1,0 +1,24 @@
+{% extends "../base.html" %}
+{% load static %}
+
+{% block title %}Livraria Aquaflora | Pagamento Feito!{% endblock %}
+
+
+
+{% block conteudo %}
+<div class="container-fluid">
+  <div class="row no-gutter">
+    <div class="col-md-12">
+      <div class="login d-flex align-items-center py-5">
+        <div class="container">
+        <h1>Pagamento realizado com sucesso!</h1>
+        <hr>
+         <a role="button" href={% url 'aquaflorastore:allproducts' %} class="btn btn-light fw-bold" type="button">Voltar à loja</a>
+         <a role="button" href={% url 'pedidos:pagina_pedidos' %} class="btn btn-light fw-bold" type="button">Ver Seus Pedidos</a>
+        </div>
+      </div>
+    </div>
+  </div>          
+</div>
+
+{% endblock %}

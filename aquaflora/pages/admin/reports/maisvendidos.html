@@ -1,0 +1,132 @@
+{% extends "admin/base_site.html" %}
+
+{% load mathfilters %}
+
+{% block content %}
+    {% block header %}
+    {% endblock %}
+    {% block usertools %}
+    {% endblock %}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+
+<main>
+
+    <h3> Relatórios de Produtos Vendidos por Período </h3>
+
+    <p> Esse documento mostra os livros vendidos por pedido com pagamento aprovado, por determinado período de tempo.
+        Por padrão, mostra-se resultados para os últimos 7 dias.</p>
+
+    <p>Recomenda-se que livros mais vendidos sejam marcados como "Mais Vendidos" em seu cadastro. </p>
+
+    <hr></br>
+    
+        <div class='small text'> Escolha o intervalo de tempo para a pesquisa: </div>
+        <br>
+        
+        <form action="" method='POST'>
+            {% csrf_token %}
+
+            <label class="fw-bold"> Desde </label> {{ dateform.start_date }}
+            <label class="fw-bold"> até </label>  {{ dateform.end_date }}
+            <br><br>
+            <input type="submit" name='submit' value="Ver resultados">
+        </form>
+        <br>
+        <div class="container">
+        <h5>Pedidos desde {{start_date|date:'d-m-Y' }} até {{ end_date |date:'d-m-Y'}} </h5>
+        </p>Número total de pedidos nesse intervalo de tempo: {{num_pedidos}}
+        </br></br>
+
+        <div class="results">
+
+            <table id='BestSellerTable'>
+                <thead>
+                    <tr>
+                        <th>
+                            <div class="text">
+                                Produto
+                            </div>
+                        </th>
+                        <th>
+                            <div class="text">
+                                Exemplares Vendidos
+                            </div>
+                        </th>
+                        
+                        <th>
+                            <div class="text">
+                                Preço por Unidade
+                            </div>
+                        </th>
+
+                        <th>
+                            <div class="text">
+                                Valor Total da Venda
+                            </div>
+                        </th>
+
+
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                        {% for k, v in por_popularidade %}
+
+                        
+                            <tr class="{% cycle 'row1' 'row2' %}">
+
+                            <td> <a href='http://127.0.0.1:8000/admin/aquaflorastore/produto/{{ livro.produto.id}}/change/'>
+                                    {{ k }} </a> </td>
+
+                                <td> {{ v }} </td>
+
+                            {% for livro in livros %}
+                                {% if livro.produto.livro_nome == k %}
+                                {% ifchanged %}
+                            <td> {{ livro.preco }} </td>
+
+                            <td> {{ livro.preco|mul:v }} </td>
+                            {% endifchanged %}
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+
+                        
+                    {% endfor %}
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</main>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#BestSellerTable').DataTable({
+            language: {
+                url: 'https://raw.githubusercontent.com/DataTables/Plugins/master/i18n/pt-BR.json'
+            }
+        });
+    });
+</script>
+<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('.datepicker').datepicker({
+            dateFormat: 'yy-mm-dd'
+        });
+    });
+</script>
+
+{% endblock %}

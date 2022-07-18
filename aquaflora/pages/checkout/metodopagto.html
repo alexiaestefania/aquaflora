@@ -1,0 +1,53 @@
+{% extends "../base.html" %}
+{% load static %}
+
+{% block title %}Livraria Aquaflora | Pagamento{% endblock %}
+
+{% block adtscripts %}
+ <script src="https://sdk.mercadopago.com/js/v2"></script>
+{% endblock %}
+
+
+{% block conteudo %}
+<script src="https://sdk.mercadopago.com/js/v2"></script>
+<div class="container-fluid">
+  <div class="row no-gutter">
+    <div class="col-md-12">
+      <div class="login d-flex align-items-center py-5">
+        <div class="container">
+          Seu pedido, com ID {{ pedidoid }}, está pronto! Para realizar o pagamento, utilize o botão abaixo e pague via MercadoPago.
+          <br>
+          <hr>
+          <br>
+            <td align="center"><div class="cho-container" data-header-color="#c0392b"></div></td>
+
+        </div>
+      </div>
+    </div>
+  </div>          
+</div>
+
+{% endblock %}
+
+{% block addscripts %} 
+
+
+
+<script>
+
+  const mp = new MercadoPago('TEST-01e91183-057d-412b-a2ff-42d76ddcfad1', {
+      locale: 'pt-BR'
+  });
+  const checkout = mp.checkout({
+      preference: {
+          id: '{{preference_id}}',
+      },
+      render: {
+          container: '.cho-container',
+          label: 'Pagar com Segurança',
+      }
+  });
+</script>	 	 
+{% endblock %}
+
+

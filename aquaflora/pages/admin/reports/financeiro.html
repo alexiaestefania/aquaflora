@@ -1,0 +1,139 @@
+{% extends "admin/base_site.html" %}
+
+{% load mathfilters %}
+
+{% block content %}
+{% block header %}
+{% endblock %}
+{% block usertools %}
+{% endblock %}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+<main>
+
+    <h3> Relatórios de Finanças </h3>
+
+    <p> Esse documento mostra lucros por vendas e gastos em um determinado príodo de tempo. </p>
+
+    <hr></br>
+    
+        <div class='small text'> Escolha o intervalo de tempo para a pesquisa: </div>
+        <br>
+        
+        <form action="" method='POST'>
+            {% csrf_token %}
+            <label class="fw-bold"> Desde </label> {{ dateform.start_date }}
+            <label class="fw-bold"> até </label>  {{ dateform.end_date }}
+            <br><br>
+            <input type="submit" name='submit' value="Ver resultados">
+        </form>
+
+        <br>
+
+        <div class="container">
+        <h5>Finanças desde {{start_date|date:'d-m-Y' }} até {{ end_date |date:'d-m-Y'}} </h5>
+
+        </br></br>
+
+        <div class="results">
+
+            <table id='financetable'>
+                <thead>
+                    <tr>
+                        <th>
+                            <p class="text">
+                            Vendas Concretizadas
+                            </p>
+                        </th>
+
+                        <th>
+                            <p class="text">
+                            Valor das Vendas (Bruto)
+                            </p>
+                        </th>
+                        
+                        <th>
+                            <p class="text">
+                            Gastos com Fretes
+                            </p>
+                        </th>
+
+                        <th>
+                            <p class="text">
+                            Valor das Vendas (Líquido)
+                            </p>
+                        </th>
+
+                        <th>
+
+                            <p class="text">
+                            Estravios/Devoluções/Estornos
+                            </p>
+                        </th>
+                        <th>
+                            <p class="text-danger">
+                            Despesas Totais
+                            </p>
+                        </th>
+
+                        <th>
+                            <p class="text-success">
+                            <b> Lucro Total no Período</b>
+                            </p>
+                        </th>
+
+
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr class="{% cycle 'row1' 'row2' %}">
+
+                        <td> {{ num_vendas }} </td>
+
+                        <td class="text-success"> R$ {{vendas_bruto}} </td>
+
+                        
+
+                        <td class="text-danger"> R$ - {{gastos_frete}} </td>
+
+                        <td class="text-success"> R$ {{vendas_liquido}} </td>
+
+                        <td class="text-danger"> R$ - {{gastos_estravios}} </td>
+
+                        <td class="text-danger font-weight-bold"> R$ - {{despesas_totais}} </td>
+
+                        <td class="text-success font-weight-bold"> R$ {{lucro_total}} </td>
+
+                       
+
+
+
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('.datepicker').datepicker({
+            dateFormat: 'yy-mm-dd'
+        });
+    });
+</script>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Livraria Aquaflora{% endblock %}
+
+{% block conteudo %}
+
+<main>
+    <div class="album py-5 bg-light">
+    <div class="container">
+        <h5>Pedido Cancelado</h5>
+        <hr>
+        <div class='small text'>
+            Seu pedido {{id}} foi cancelado. Sentimos muito se teve uma má experiência, e esperamos sua visita novamente. <p/>
+            <hr>
+         <a role="button" href={% url 'aquaflorastore:allproducts' %} class="btn btn-light fw-bold" type="button">Voltar à loja</a>
+         <a role="button" href={% url 'pedidos:pagina_pedidos' %} class="btn btn-light fw-bold" type="button">Voltar a Seus Pedidos</a>
+                </div>
+      
+</div>
+</main>
+
+
+{% endblock %}

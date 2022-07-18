@@ -1,0 +1,25 @@
+{% extends "../base.html" %}
+{% load static %}
+{% block title %}Livraria Aquaflora | Seus pedidos{% endblock %}
+{% block conteudo %}
+    <main class="pt-5">
+        <div class="container" style="max-width: 1600px">
+            <div class="profcol col col-lg-6 mb-4 mb-lg-0">
+                <div class="card mb-3" style="border-radius: .5rem;">
+                    <div class="row g-0">
+                        <h1 class="h2">Pedidos na Aquaflora</h1>
+                        <br>
+                        <hr class="mt-0 mb-4">
+                        {% for pedido in pedidos %}
+                        <div data-index="" class="row mb-4 border">
+                            <div class="col-md-9 col-lg-10 ps-md-3 ps-lg-10">
+                                <h1 class="h5 pt-2">ID do pedido</h1>
+                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

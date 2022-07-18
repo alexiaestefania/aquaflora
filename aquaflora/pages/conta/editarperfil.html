@@ -1,0 +1,96 @@
+
+{% extends "../base.html" %}
+{% load static %}
+{% block title %}Livraria Aquaflora | Editar Perfil{% endblock %}
+
+{% block conteudo %}
+
+    <div class="conteudo py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-10">
+                <div class="logincard" style="border-radius: 1rem;">
+                    <div class="row g-0">
+                            <div class="col-md-6 col-lg-5 d-none d-md-block"><img src="{% static "cover.jpeg" %}" alt="login form"class="img-fluid" style="border-radius: 1rem 0 0 1rem;"/></div>
+                        <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                            <div class="card-body p-4 p-lg-5 text-black">
+                                <form class="account-form px-4 pt-4" method="post" enctype="multipart/form-data">
+
+                                    {% if user_form.is_valid  %}
+
+                                        <div class="alert alert-primary" role="alert">Dados modificados com sucesso!</div>
+                                        <p class="small text-center pt-0"><a href="{% url "conta:perfil" %}">Voltar para seu perfil</a></p>
+                                    
+                                    {% else %}
+
+                                    <h3>Altere os dados de sua conta.</h3>
+
+                                    {% endif %}
+                                    
+                                    {% if form.errors %}
+                                        <div class="alert alert-primary" role="alert"><p>Por favor corrija os erros no seu formulário.</p></div>
+
+                                    {% endif %}
+
+                                    {% csrf_token %}
+                                    <div class="form-group"><label class="small font-weight-bold">{{ user_form.email.label}}</label>
+                                        {{ user_form.email }}
+                                    </div>
+
+                                    <div class="form-group"><label class="small font-weight-bold">{{ user_form.username.label}}</label>
+                                        {{ user_form.username }}
+                                    </div>
+
+                                    <div class="form-group"><label class="small font-weight-bold">{{ user_form.nome.label}}</label>
+                                        {{ user_form.nome }}
+                                    </div>
+
+                                    <div class="form-group"><label class="small font-weight-bold">{{ user_form.cpf.label}}</label>
+                                        {{ user_form.cpf }}
+
+                                    </div>
+
+                                    <div class="form-group"><label class="small font-weight-bold">{{ user_form.ender.label}}</label>
+                                        {{ user_form.ender }}
+                                    </div>
+
+                                    <div class="form-group"><label class="small font-weight-bold">{{ user_form.bairro.label}}</label>
+                                        {{ user_form.bairro }}
+                                    </div>
+
+                                    <div class="form-group"><label class="small font-weight-bold">{{ user_form.cidade.label}}</label>
+                                        {{ user_form.cidade }}
+                                    </div>
+                                    <p>
+
+                                    <div class="form-group"><label class="small font-weight-bold">{{ user_form.estado.label}}</label>
+                                        {{ user_form.estado }}
+                                    </div>
+                                    <p>
+
+                                    <div class="form-group"><label class="small font-weight-bold">{{ user_form.cep.label}}</label>
+                                        {{ user_form.cep }}
+                                    </div>
+                                    
+
+                                    <div class="form-group"><label class="small font-weight-bold">{{ user_form.tel.label}}</label>
+                                        {{ user_form.tel }}
+                                    </div>
+
+
+
+                                    <button class="btn btn-primary btn-block py-2 mb-4 mt-5 fw500 w-100"  type="submit" value="Save changes">Salvar Alterações</button>
+                                    <hr class="mb-3">
+                                    </form>
+                            </div>
+                        </div>
+                        <div class="profilebutton">
+                                    <a class="btn btn-danger btn-block" role="button" href="{% url 'conta:delete_confirmation_question' %}">Excluir Conta</a>
+                                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

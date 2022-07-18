@@ -1,0 +1,151 @@
+{% extends "admin/base_site.html" %}
+
+{% load mathfilters %}
+
+{% block content %}
+    {% block header %}
+    {% endblock %}
+    {% block usertools %}
+    {% endblock %}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
+<main>
+
+    <h3> Relatórios de Movimentação de Estoque </h3>
+
+    <p> Esse documento mostra movimentações de estoque, e a quantidade de exemplares no estoque para seus livros. </p>
+    <p> Por padrão, mostram-se as movimentações para os últimos 7 dias.</p>
+
+    <hr></br>
+    
+        <div class='small text'> Escolha o intervalo de tempo para a pesquisa: </div>
+        <br>
+        
+        <form action="" method='POST'>
+            {% csrf_token %}
+
+            <label class="fw-bold"> Desde </label> {{ dateform.start_date }}
+            <label class="fw-bold"> até </label>  {{ dateform.end_date }}
+            <br><br>
+            <input type="submit" name='submit' value="Ver resultados">
+        </form>
+        <br>
+        <div class="container">
+        <h5>Movimentações desde {{start_date|date:'d-m-Y' }} até {{ end_date |date:'d-m-Y'}} </h5>
+        <button class='button-success' href="http://127.0.0.1:8000/admin/aquaflorastore/produtoestoque/"> Ir para movimentação de estoque </button> 
+        </br></br>
+
+        <div class="results">
+
+            <table id='InventoryTable'>
+
+                <thead>
+                    <tr>
+                        <th>
+                            <div class="text">
+                                Produto
+                            </div>
+                        </th>
+                        <th>
+                            <div class="text font-weight-bold">
+                                Exemplares em Estoque
+                            </div>
+                        </th>
+                        
+                        <th>
+                            <div class="text">
+                                Entradas
+                            </div>
+                        </th>
+
+                        <th>
+                            <div class="text">
+                                Saídas
+                            </div>
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+                {% for produto in lista_produtos %}
+                    
+
+                            <tr class="{% cycle 'row1' 'row2' %}">
+                                <td class="text">
+                                    <a href='http://127.0.0.1:8000/admin/aquaflorastore/produto/{{ produto.id}}/change/'>
+                                        {{produto.livro_nome }}
+                                    </a> 
+                                </td>
+
+                                <td>
+                                {% if produto.livro_qtdd > 0 %}
+                                    <p class='text-success font-weight-bold'>
+                                {% elif produto.livro_qtdd <= 0 %}
+                                    <p class="text-danger font-weight-bold">
+                                {% endif %}
+
+                                {{produto.livro_qtdd}}
+                                </p></td>
+
+                                {% for k, v in entradas %}
+                                
+                                    {% if produto.id == k %}
+                                    <td class="text-success ">
+                                        {{ v }}
+                                    </td>
+                                    
+                                    {% endif %}
+                                {% endfor %}
+
+                                {% for k,v in saidas %}
+                                
+                                    {% if produto.id == k %}
+                                    <td class="text-danger">
+                                        - {{ v }}
+                                    </td>
+                                    {% endif %}
+                                {% endfor %}
+                            </tr>
+
+                {% endfor %}
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</main>
+
+
+
+<script>
+    $(document).ready(function () {
+        $('#InventoryTable').DataTable({
+            language: {
+                url: 'https://raw.githubusercontent.com/DataTables/Plugins/master/i18n/pt-BR.json'
+            }
+        });
+    });
+</script>
+
+<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('.datepicker').datepicker({
+            dateFormat: 'yy-mm-dd'
+        });
+    });
+</script>
+
+{% endblock %}
+

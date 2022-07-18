@@ -1,0 +1,162 @@
+{% extends "admin/base_site.html" %}
+
+
+    {% block header %}{% endblock %}
+    {% block usertools %}{% endblock %}
+    
+
+{% block content %}{% block breadcrumbs %}{% endblock %}
+{% block siteheader %} {% endblock %}
+
+
+<body class ='UMbody'>
+    <div class="UMsidenav">
+        <h2>Manual Aquaflora</h2>
+        <hr>
+        
+
+        <a href="{% url 'admin:index' %}"> <b> Voltar ao Painel </b> </a>
+        <br>
+
+        <a href="#intro">1. Introdução</a>
+        <a href="#auten">2. Autenticação</a>
+        <a href="#naveg">3. Navegação</a>
+        <a href="#cadas">4. Cadastro de Contas</a>
+        <a href="#estoq">5. Estoque</a>
+        <a href="#pedid">6. Pedidos</a>
+        <a href="#pagam">7. Pagamentos</a>
+        <a href="#relat">8. Relatórios</a>
+        <a href="#extra">9. Outros</a>
+        
+
+    </div>
+    <div class="UMcontent">
+    
+        <h2>Manual de Usuários Aquaflora para Gerentes do Sistema</h3>
+        <hr>
+
+        <div class='UMsection' id='intro'>
+
+            <h3>1. Introdução</h3>
+
+            <br>
+            <p>Esse manual é destinado aos gerentes do sistema Aquaflora. Sua função é, principalmente, visualizar e gerenciar o estoque, pedidos, e visualizar relatórios do sistema. </p>
+            <p>Por favor utilize o menu lateral para navegar pelo manual.</p>
+
+        </div>
+
+        <br><hr><br>
+        
+
+        <div class='UMsection' id='auten'>
+        <h3>2. Autenticação</h3>
+        <br>
+            <p>Para acessar o menu de administração da Aquaflora, basta acessar o endereço do site com "/admin" no final, em seu navegador. </p>
+            <p>Para autenticar-se, digite seu usuário e senha providenciados por seu administrador de sistema no formulário de autenticação. Se você não possui um login e senha válidos, entre em contato com o administrador de seu sistema.</p>
+
+        </div>
+
+        <br><hr><br>
+        <div class='UMsection' id='naveg'>
+        <h3>3. Navegação</h3>
+        <br>
+        
+            <p>A navegação do painel de administração é simples. No menu de navegação lateral, ferramentas básicas estão ao seu dispor: </p>
+            <UL>
+                <li> <b>Ver o Site</b>: Clique para ser levado à página principal da Aquaflora, como é vista por clientes.</li>
+                <li> <b>Alterar Senha</b>: Clique para ser levado à página de alteração de senha. Lembre-se de ter sua senha anterior se deseja trocá-la.</li>
+                <li> <b>Manual do Site</b>: Clique para ser levado ao manual do site para seu tipo de usuário.</li>
+                <li> <b>Encerrar Sessão</b>: Clique para encerrar sua sessão fazendo <i>logout</i> de sua conta.</li>
+            </UL>
+            <p>Em seu painel principal, você verá uma tabela de tarefas de acordo com suas permissões. Como gerente, sua tabela de tarefas inclui os menus de estoque, opções de fretes, e pedidos. Você terá, também, acesso às páginas de relatório, disponíveis na navegação lateral.</p>
+
+            <p>Para selecionar uma opção dentro do menu, simplesmente clique nela. Para voltar, você pode usar o botão do navegador ou clicar em "Início" na barra de navegação que aparece no topo das tarefas.</p>
+        </div>
+
+        <br><hr><br>
+        <div class='UMsection' id='cadas'>
+        <h3>4. Cadastro de Contas</h3>
+
+        
+            <p>Para obter sua conta, por favor entre em contato com o administrador de seu sistema.</p>
+        </div>
+
+        <br><hr><br>
+        <div class='UMsection' id='estoq'>
+        <h3>5. Estoque</h3>
+            Na Aquaflora, o estoque é dividido em três aspectos:
+            <UL>
+                
+                <li> <b>Categorias</b>: Categorias que são utilizadas para classificar os produtos.</li>
+                <li> <b>Livros</b>: Cadastros dos produtos que são vendidos na loja.</li>
+                <li> <b>Movimentações de Estoque</b>: O controle de estoque de cada produto.</li>
+            </UL>
+            <p>Para acessar o estoque, selecione a opção desejada (Categoria, Livros, e Movimentações) no menu "Estoque" na tabela de tarefas do painel principal. Você pode adicionar ou modificar uma opção rapidamente usando os botões "adicionar" e "modificar" na opção respectiva da tabela de tarefas</p>
+            <p>Para cadastrar produtos no site, é necessário que exista ao menos uma categoria para o livro. Caso não exista uma categoria apropriada, você pode criar uma.</p>
+            <p>Ao cadastrar um novo produto, basta preencher o formulário. Cada campo é explicado abaixo:</p>
+            <ul>
+            <li> <b> Nome do livro:</b> </li> O nome do livro.
+            <li> <b> Autor do livro:</b> </li> O autor (ou autores) do livro.
+            <li> <b> Descrição:</b> </li> Uma breve descrição do livro, geralmente o resumo próprio do autor.
+            <li> <b> Editora:</b> </li>A editora do livro.
+            <li> <b> Ano:</b> </li>Ano de publicação.
+            <li> <b> Idioma:</b> </li>O idioma do livro.
+            <li> <b> Acabamento:</b> </li>O tipo de acabamento (ex: brochura)
+            <li> <b> IMG 1:</b> </li> A imagem que será mostrada no site. Recomenda-se uma foto da capa do livro.
+            <li> <b> Preço:</b> </li>O preço estabelecido desse livro. Lembre-se de considerar as taxas do MercadoPago ao estabelecer um preço.
+            <li> <b> Livro slug:</b> </li>Um "slug" é o texto que fica na barra de endereços. Você pode deixar esse campo com o autopreenchimento padrão do sistema.
+            <li> <b> Ativo:</b> </li> Marcado como padrão. Desmarque essa opção se você não quer que o livro apareça no site ou se quiser arquivá-lo.
+            <li> <b> Em estoque:</b> </li> Marcado como padrão. Desmarque quando não houver estoque disponível
+            <li> <b> Popular/Mais vendido:</b> </li> Marque essa opção para que o livro apareça na aba mais vendidos. Recomenda-se usar o relatório de popularidade para saber qual livros marcar.
+            <li> <b> Lançamento:</b> </li>Marque essa opção para que o livro apareça na aba Lançamentos.
+            <li> <b> Promoção:</b> </li>Marque essa opção para que o livro apareça na aba Promoções.
+            
+            
+            </ul>
+                    <p>Para movimentar o estoque, adicionando ou retirando livros, a Aquaflora tem seu controle de estoque na opção "Movimentações de Estoque". Basta selecionar, e usar a opção "Adicionar Movimentação de Estoque" para começar. </p> Em "Produto", você terá uma lista contendo os livros cadastrados para escolher. Se você já souber o número de identificação de um livro, você pode colocá-lo manualmente na caixa de texto. </p>Em "Quantidade", coloque quantos livros deseja adicionar ao estoque, com um número positivo. Se deseja retirar do estoque, utilize um número negativo. <span class='text-danger'> Isso é importante.</span> Nunca marque retiradas de estoque com números positivos, ou serão contados como entrada.</p>
+            <p>A opção "movimentado por" é automaticamente adicionada, e indica quem movimentou o estoque. Uma data e timestamp também são gravadas.</p>
+            <p>Você pode ver um relatório de movimentações na opção "Estoque" em Relatórios no menu lateral.</p>
+        
+        </div>
+
+               <br><hr><br>
+        <div class='UMsection' id='pedid'>
+        <h3>6. Pedidos</h3>
+        <p>Quando um cliente faz um pedido, você pode imediatamente vê-lo na página de pedidos, acessada via tabela de tarefas. </p>
+        {% lorem 5 %}
+        
+        </div>
+        <br><hr><br>
+        <div class='UMsection' id='pagam'>
+        <h3>7. Pagamentos</h3>
+        <p>Quando um cliente faz um pedido, você pode imediatamente vê-lo na página de pedidos </p>
+        
+        </div>
+
+
+        <br><hr><br>
+
+         
+        <div class='UMsection' id='relat'>
+        <h3>8. Relatórios do Site</h3>
+        <p>Quando um cliente faz um pedido, você pode imediatamente vê-lo na página de pedidos </p>
+        
+
+        <br><hr><br>
+        </div>
+        <div class='UMsection' id='extra'>
+        <h3>9. Outros</h3>
+        <p>Quando um cliente faz um pedido, você pode imediatamente vê-lo na página de pedidos </p>
+        
+        </div>
+
+
+       
+
+
+    </div>
+</body>
+{% endblock %}
+
+
+    

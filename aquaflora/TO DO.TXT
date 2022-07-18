@@ -1,0 +1,16 @@
+Charts o graphic stuff for the three quick stats in admin page
+Build each admin report views
+link reports in template
+
+fix wishlist or remove it
+
+add express purchase if i have time
+add coupon and discount stuff? will need to modify reports.
+
+
+
+
+# arquivos alterados
+
+conta/views.py enderecos_add @136
+pages/conta/perfil_addender.html @22

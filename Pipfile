@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+django-debug-toolbar = "*"
+django-localflavor = "3.4.1"
+django-crum = "0.7.9"
+reportlab = "*"
+mercadopago = "*"
+django-mathfilters = "*"
+
+[dev-packages]
+pylint = "*"
+
+[requires]
+python_version = "3.8"

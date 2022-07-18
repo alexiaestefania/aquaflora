@@ -1,0 +1,521 @@
+.siteheader {
+    background-image:url('cover.jpeg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: max-content;
+    margin: 0;
+    padding: 15px 0px 15px 0px;
+    vertical-align: middle;
+}
+
+.titlebox {
+    font-family: 'Raleway';
+    font-size: 65px;
+    color:beige;
+    background:rgba(0,0,0,0.5);
+    position: sticky;
+    margin: 15px 0px 15px 0px;
+    max-height: max-content;
+    padding: 15px 0px 15px 10px;
+    vertical-align: middle;
+    word-spacing: 8px;
+    text-decoration: none;
+}
+
+.admintitlebox {
+    font-family: 'Raleway';
+    font-size: 45px;
+    color:beige;
+    background:rgba(0,0,0,0.5);
+    position: sticky;
+    margin: 5px 0px 5px 0px;
+    max-height: max-content;
+    padding: 5px 0px 5px 10px;
+    vertical-align: middle;
+    word-spacing: 8px;
+    text-decoration: none;
+}
+
+
+.search-box {
+    border: 1px solid white;
+    border-radius: 35px;
+    background: white;
+    width: max-content;
+    display: inline-block;
+    height: min-content;
+    font-size: 20px;
+    vertical-align: middle;
+    margin: 0px 0px 10px 0px;
+}
+
+
+.search-box label {
+    display: none;
+
+}
+.search-box:hover {
+    box-shadow: 0 0 10px 2px rgb(47, 100, 102);
+    border: 1px solid rgb(47, 100, 102);
+}
+
+.search-input{
+    width: 250px;
+    border: none;
+    background: transparent;
+    margin: 15px 0 0 10px;
+    font-size: 16px;
+    outline: none;
+    display: inline-block;
+}
+
+#searchico {
+    font-size: 20px;
+    margin: 15px;
+}
+
+button{
+    background: transparent;
+    border: none;
+    outline: none;
+
+}
+
+.carticon {
+    float: right;
+    margin-right: 15px;
+    display: flex;
+    background-color: transparent;
+    width: fit-content;
+    height: fit-content;
+    padding:5px;
+}
+
+.btn-outline-secondary:hover{
+    color: beige;
+    background-color: #2f6365;
+}
+
+.navmenubar {
+    position: fixed;
+    top: 0px;
+    height: max-content;
+    padding: 5px;
+}
+
+.menu {
+    background-color: beige;
+    height: max-content;
+    width: 100%;
+    padding: 5px;
+}
+
+.navmenu {
+    margin-top: 0px;
+    padding: 0px;
+    display: inline;
+}
+
+.navmenu li{
+    font-family: 'Raleway';
+    font-size: 20px;
+    list-style: none;
+    display: inline-block;
+    padding: 25px 25px 25px;
+}
+
+.dropdown {
+    position: relative
+}
+
+.catdropdown {
+    color: rgb(47, 100, 102);
+    text-decoration: none;
+    font-variant: small-caps;
+    font-family: 'Raleway';
+    font-size: 20px;
+    list-style: none;
+    display: inline-block;
+    padding: 25px 25px 25px;
+    cursor: pointer;
+}
+
+.catdropdown:hover{
+    background: white;
+    transform: scale(1.2);
+    border-radius: 25px;
+}
+
+.catdropdown-content {
+    display: none;
+    text-decoration: none;
+    color: white;
+    font-family: 'Raleway';
+    font-size: 16px;
+    list-style: none;
+    position: absolute;
+    background-color: rgb(47, 100, 102);
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    padding: 5px 20px 10px 20px;
+}
+
+.catdropdown-content a{
+    text-decoration: none;
+    color: white;
+    font-family: 'Raleway';
+    font-size: 16px;
+}
+
+#cattudo {
+    font-size: 20px;
+}
+
+.catdropdown-content li:hover {
+    background-color: white;
+    transform: scale(1.1);
+    color: rgb(47, 100, 102);
+}
+
+.catdropdown-content li:hover a{
+    text-decoration: none;
+    color: rgb(47, 100, 102);
+}
+
+.show {display:block;}
+
+.cartcontainer {
+    display: block;
+    border: 1px;
+    padding: 10px;
+    border-color: black;
+}
+
+#menuitem{
+    color: rgb(47, 100, 102);
+    text-decoration: none;
+    font-variant: small-caps;
+    font-family: 'Raleway';
+    font-size: 20px;
+    list-style: none;
+    display: inline-block;
+    padding: 25px 25px 25px;
+    margin-top: 10px;
+    border-radius: 25px;
+}
+
+#menuitem:hover{
+    background: white;
+    transform: scale(1.2);
+}
+
+#prodcard {
+    max-width: 250px;
+    height: auto;
+    padding: 5px;
+    position: initial;
+    background-color: beige;
+}
+
+.basket-qty{
+    color: #fff;
+    background: rgb(47, 100, 102);
+    border: 2px solid #fff;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 12px;
+    height: 16px;
+    width: 16px;
+    position: absolute;
+    box-sizing: content-box;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 1px;
+    right: 1px;
+}
+
+
+.wishlist-qty{
+    color: #fff;
+    background: rgb(47, 100, 102);
+    border: 2px solid #fff;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 12px;
+    height: 16px;
+    width: 16px;
+    position: absolute;
+    box-sizing: content-box;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 1px;
+    right: 1px;
+}
+
+
+
+.basket-btn{
+    position: relative;
+}
+
+body {
+    background-color: rgb(255, 254, 249);
+    margin: 0;
+}
+
+.nav-link {
+    display: inline-grid;
+    color: rgb(47, 100, 102);
+}
+
+.bg-light {
+    --bs-bg-opacity: 0;
+    background-color: rgba(var(--bs-light-rgb),var(--bs-bg-opacity)) !important;
+}
+
+.btn-light {
+    color: rgb(47, 100, 102);
+    background-color: beige;
+    font-family: 'Raleway';
+    border-radius: 15px;
+    border-color:rgb(47, 100, 102);
+    border-width: 1px;
+}
+
+.btn-light:hover {
+    color: beige;
+    background-color: rgb(47, 100, 102);
+    font-family: 'Raleway';
+    border-radius: 15px;
+    border-color:rgb(255, 254, 249);
+    border-width: 1px;
+}
+
+.signup-form {
+	width: 600px;
+	margin: 0 auto;
+	padding: 30px 0;
+  	font-size: 15px;
+}
+.signup-form h2 {
+	color: rgb(47, 100, 102);
+    font-family: 'Raleway';
+    font-size: 26px;
+	margin: 0 0 15px;
+	position: relative;
+	text-align: center;
+}
+.signup-form h2:before, .signup-form h2:after {
+	content: "";
+	height: 2px;
+	width: 15%;
+	background: rgb(47, 100, 102);
+	position: absolute;
+	top: 50%;
+	z-index: 2;
+}	
+.signup-form h2:before {
+	left: 0;
+}
+.signup-form h2:after {
+	right: 0;
+}
+.signup-form .hint-text {
+	color: #999;
+	margin-bottom: 30px;
+	text-align: center;
+}
+.signup-form form {
+	color: #999;
+	border-radius: 3px;
+	margin-bottom: 15px;
+	background: #f2f3f7;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	padding: 30px;
+}
+.signup-form .form-group {
+	margin-bottom: 20px;
+}
+.signup-form input[type="checkbox"] {
+	margin-top: 3px;
+}
+.signup-form .btn {        
+	font-size: 16px;
+	font-weight: bold;		
+	min-width: 140px;
+	outline: none !important;
+}
+.signup-form .row div:first-child {
+	padding-right: 10px;
+}
+.signup-form .row div:last-child {
+	padding-left: 10px;
+}    	
+.signup-form a {
+	color: #fff;
+	text-decoration: underline;
+}
+.signup-form a:hover {
+	text-decoration: none;
+}
+.signup-form form a {
+	color: rgb(47, 100, 102);
+	text-decoration: none;
+}	
+.signup-form form a:hover {
+	text-decoration: underline;
+} 
+
+.btn-primary {
+    color: #fff;
+    background-color: rgb(47, 100, 102);
+    border-color: rgb(47, 100, 102);
+    font-family: 'Raleway';
+}
+
+.btn-primary:hover {
+    background-color: #fff;
+    color: rgb(47, 100, 102);
+    border-color: #fff;
+    font-family: 'Raleway';
+    transform: scale(1.1);
+}
+
+.account-form input {
+    border: 2px solid #ccc;
+    height: calc(2em + .75rem + 2px);
+}
+
+.account-form input:focus {
+    border-color: rgb(47, 100, 102);
+    box-shadow: none;
+}
+
+.h2, h2 {
+    color: rgb(47, 100, 102);
+    font-family: 'Raleway'
+}
+
+.perfilheader {
+    max-width: 100%;
+    background-color: beige;
+    padding: 20px 0px 10px 0px;
+    min-height: 300px;
+    border-radius: 50px;
+}
+
+
+
+.img-fluid {
+    width: fit-content;
+    height: 100%;
+    object-fit: cover;
+}
+
+.logintext {
+    color:rgb(47, 100, 102);
+    font-family: 'Raleway';
+}
+
+.logincard{
+    margin-top: 20px;
+    background-color: beige;
+}
+
+.a {
+    color:rgb(47, 100, 102);
+}
+
+
+.profcard {
+    position: relative;
+}
+
+.profcol {
+    width: 75%;
+}
+.gradient-custom {
+    /* fallback for old browsers */
+    background: rgb(47, 100, 102);
+  
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right bottom, rgb(47, 100, 102), rgb(115, 143, 113));
+  
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right bottom, rgb(47, 100, 102), rgb(115, 143, 113))
+  }
+
+  .btneditar {
+      padding: 5px;
+      margin: 5px;
+      float: right;
+      display: flex;
+  }
+
+  .profilecard {
+      position: sticky;
+      margin: auto;
+  }
+
+span .resumo_subtitle {
+    color: rgb(47, 100, 102);
+    font-family:  'Raleway';
+    font-size: large;
+}
+
+
+
+.UMbody {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the side navigation */
+.UMsidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(47, 100, 102);
+  overflow-x: hidden;
+}
+
+
+/* Side navigation links */
+.UMsidenav a {
+  color: beige;
+  padding: 16px;
+  text-decoration: none;
+  font-family: 'Raleway';
+  font-size: 16px;
+  display: block;
+}
+
+/* Change color on hover */
+.UMsidenav a:hover {
+  background-color: beige;
+  color: #2f6365;
+}
+
+.UMsidenav h2 {
+    color: beige;
+    padding: 10px;
+    text-decoration: none;
+    font-family: 'Raleway';
+    font-size: 26px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .UMsidenav hr {
+    color: beige;
+    background-color: beige;
+  }

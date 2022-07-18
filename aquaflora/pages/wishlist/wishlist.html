@@ -1,0 +1,22 @@
+{% extends "../base.html" %}
+{% load static %}
+{% block title %}Livraria Aquaflora | Seus Favoritos{% endblock %}
+{% block conteudo %}
+
+<main class="pt-5">
+
+    <div class="container" style="max-width: 1600px">
+        <h1 class="h2">Seus Favoritos</h1>
+        <br>
+
+        <hr class="mt-0 mb-4">
+        <div>
+        {% for item in wishlist %}
+
+        {% endfor %}
+        </div>
+    </div>
+</main>
+
+
+{% endblock %}

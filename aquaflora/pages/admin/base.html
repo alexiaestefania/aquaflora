@@ -1,0 +1,213 @@
+{% load i18n static %}
+<!DOCTYPE html>
+{% load static %}
+{% load has_group %}
+{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}" dir="{{ LANGUAGE_BIDI|yesno:'rtl,ltr,auto' }}">
+
+<head>
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+    <link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% static "admin/css/base.css" %}{% endblock %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet">
+    {% if not is_popup and is_nav_sidebar_enabled %}
+    <link rel="stylesheet" type="text/css" href="{% static "admin/css/nav_sidebar.css" %}">
+    <script src="{% static 'admin/js/nav_sidebar.js' %}" defer></script>
+    {% endif %}
+
+    <link rel="stylesheet" type="text/css" href="{% static "css/admin-extra.css" %}" />
+    {% block extrastyle %}{% endblock %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    {% if LANGUAGE_BIDI %}
+    <link rel="stylesheet" type="text/css"
+        href="{% block stylesheet_rtl %}{% static "admin/css/rtl.css" %}{% endblock %}">
+    {% endif %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Author" content="Aléxia Estefânia da Silva">
+    <meta name="keywords" content="livraria, aquacultura, aquarismo, botânica">
+    {% block extrahead %}{% endblock %}
+    {% block responsive %}
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static "admin/css/responsive.css" %}">
+    {% if LANGUAGE_BIDI %}
+    <link rel="stylesheet" type="text/css" href="{% static "admin/css/responsive_rtl.css" %}">
+    {% endif %}
+    {% endblock %}
+    {% block blockbots %}
+    <meta name="robots" content="NONE,NOARCHIVE">{% endblock %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/admin-extra.css" %}" />
+
+
+</head>
+
+<body class="{% if is_popup %}popup{% endif %}{% block bodyclass %}{% endblock %}"
+    data-admin-utc-offset="{% now "Z" %}">
+    {% block siteheader %}
+    <div class="siteheader">
+        <a style="text-decoration: none; color: beige;" href="{% url 'admin:index' %}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-gear"
+                viewBox="0 0 16 16">
+                <path
+                    d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z" />
+                <path
+                    d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z" />
+            </svg> Administração Aquaflora
+        </a>
+    </div>
+    {% endblock %}
+
+    <!-- Container -->
+
+    {% if not is_popup %}
+    <!-- Header -->
+
+    {% block header %}
+    <div id="header" class='header'>
+        {% block usertools %}
+
+        <div id="user-tools">
+
+            <h6 style='text-align:center;'>Ferramentas</h6>
+            <hr>
+
+            {% if site_url %}
+            <a id="adminmenuitem" href="{{ site_url }}"> <b> Ver o Site</b>
+            </a>
+            </p>
+            {% endif %}
+
+            {% if user.has_usable_password %}
+            <a id="adminmenuitem" href="{% url 'admin:password_change' %}"><b> Alterar Senha</b>
+            </a>
+            </p>
+            {% endif %}
+            <a id="adminmenuitem" href="{% url 'user_manual:user_manual' %}"><b> Manual do Site </b>
+            </a>
+            </p>
+
+            <a id="adminmenuitem" href="{% url 'admin:logout' %}"><b> Encerrar sessão</b>
+            </a>
+            </p>
+            <br>
+            {% if request.user|has_group:"Gerente" %}
+            <h6 style="text-align: center;">Relatórios</h6>
+            <hr>
+
+            <a id="adminmenuitem" href="{% url 'aquaflora_stats:FinanceiroReport' %}"><b>
+                    Financeiro</b>
+            </a>
+            </p>
+            <a id="adminmenuitem" href="{% url 'aquaflora_stats:Estoquereport' %}"><b>
+                    Estoque</b>
+            </a>
+            </p>
+            <a id="adminmenuitem" href="{% url 'aquaflora_stats:BestSeller' %}"><b>
+                    Vendas</b>
+            </a>
+            </p>
+            {% endif%}
+
+
+            {% endblock %}
+            {% block nav-global %}{% endblock %}
+        </div>
+
+    </div>
+
+    {% endblock %}
+
+
+
+    <div class='container'>
+
+
+        <!-- END Header -->
+
+        {% block breadcrumbs %}
+        <div class="breadcrumbs">
+            <a href="{% url 'admin:index' %}">{% translate 'Home' %}</a>
+            {% if title %}&rsaquo; {{ title }}{% endif %}
+        </div>
+        {% endblock %}
+        {% endif %}
+
+        <div class="main" id="main">
+
+
+
+            <div class="content">
+
+                {% block messages %}
+                {% if messages %}
+                <ul class="messagelist">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message|capfirst }}</li>
+                        {% endfor %}
+                </ul>
+                {% endif %}
+                {% endblock messages %}
+
+
+                <div class="col-lg-4 col-12">
+
+                </div>
+                <!-- Content -->
+                <div id="content" class=" {% block coltype %}colM{% endblock %}">
+
+                    {% block pretitle %}
+                    {% endblock %}
+
+                    {% block content_title %}
+
+
+                    {% endblock %}
+                    {% block content_subtitle %}
+                    {% if subtitle %}<h2>{{ subtitle }}</h2>{% endif %}
+                    {% endblock %}
+
+
+                    {% block content %}
+
+                    {% block object-tools %}
+
+                    {% endblock %}
+
+
+
+                    {{ content }}
+
+                    {% endblock %}
+
+                    <div class:'fucko'>
+                        {% block sidebar %}
+                        {% endblock %}
+                    </div>
+
+                </div>
+
+
+
+                <!-- END Content -->
+                {% block footer %}<div id="footer">
+
+                </div>
+                {% endblock %}
+
+            </div>
+
+        </div>
+
+
+        <!-- END Container -->
+
+</body>
+
+</html>

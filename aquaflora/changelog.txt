@@ -1,0 +1,7 @@
+21/Jun 
+fixed styling issues in admin page, restyled header
+fixed reports not showing due to variables called before assignment
+implemented filtering on products shown by homepage - only active, stocked, and with qty > 0
+
+
+

@@ -1,0 +1,9 @@
+{% autoescape off %}
+
+Olá, {{ user.username }},
+
+<p>Sua conta na <i>Aquaflora</i> foi criada! Para ativá-la, por favor utilize o <b> link </b> abaixo. Boas compras!</p>
+
+http://{{ domain }}{% url 'conta:ativar' uidb64=uid token=token %}
+
+{% endautoescape %}

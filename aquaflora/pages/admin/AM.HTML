@@ -1,0 +1,133 @@
+{% extends "admin/base_site.html" %}
+
+
+{% block header %}{% endblock %}
+{% block usertools %}{% endblock %}
+
+
+{% block content %}{% block breadcrumbs %}{% endblock %}
+{% block siteheader %} {% endblock %}
+
+
+<body class='UMbody'>
+    <div class="UMsidenav">
+        <h2>Manual Aquaflora</h2>
+        <hr>
+
+
+        <a href="{% url 'admin:index' %}"> <b> Voltar ao Painel </b> </a>
+        <br>
+
+        <a href="#intro">1. Introdução</a>
+        <a href="#auten">2. Autenticação</a>
+        <a href="#naveg">3. Navegação</a>
+        <a href="#cadas">4. Cadastro de Contas</a>
+        <a href="#erros">5. Erros comuns</a>
+
+
+    </div>
+    <div class="UMcontent">
+
+        <h2>Manual de Usuários Aquaflora para Administração do Sistema</h3>
+            <hr>
+
+            <div class='UMsection' id='intro'>
+
+                <h3>1. Introdução</h3>
+
+                <br>
+                <p>Esse manual é destinado aos administradores do sistema Aquaflora. Sua função é, principalmente,
+                    gerenciar as contas de gerentes e colaboradores, bem como a manutenção técnica do sistema. </p>
+                <p>Por favor utilize o menu lateral para navegar pelo manual.</p>
+
+            </div>
+
+            <br>
+            <hr><br>
+
+
+            <div class='UMsection' id='auten'>
+                <h3>2. Autenticação</h3>
+                <br>
+                <p>Para acessar o menu de administração da Aquaflora, basta acessar o endereço do site com "/admin" no
+                    final, em seu navegador. </p>
+                <p>Para autenticar-se, digite seu usuário e senha providenciados na obtenção do sistema no formulário de
+                    autenticação. Se você não possui um login e senha válidos, entre em contato com o suporte técnico.
+                </p>
+
+            </div>
+
+            <br>
+            <hr><br>
+            <div class='UMsection' id='naveg'>
+                <h3>3. Navegação</h3>
+                <br>
+
+                <p>A navegação do painel de administração é simples. No menu de navegação lateral, ferramentas básicas
+                    estão ao seu dispor: </p>
+                <UL>
+                    <li> <b>Ver o Site</b>: Clique para ser levado à página principal da Aquaflora, como é vista por
+                        clientes.</li>
+                    <li> <b>Alterar Senha</b>: Clique para ser levado à página de alteração de senha. Lembre-se de ter
+                        sua senha anterior se deseja trocá-la.</li>
+                    <li> <b>Manual do Site</b>: Clique para ser levado ao manual do site para seu tipo de usuário.</li>
+                    <li> <b>Encerrar Sessão</b>: Clique para encerrar sua sessão fazendo <i>logout</i> de sua conta.
+                    </li>
+                </UL>
+                <p>Em seu painel principal, você verá uma tabela de funcionalidades de acordo com suas permissões. Como
+                    administrador, você pode ver e gerenciar grupos e contas. Por padrão, a Aquaflora vem com os grupos "AquafloraAdmin" (você), "Gerente" e "Colaborador".</p>
+                    <p>Para selecionar uma opção dentro do menu, simplesmente clique nela. Para voltar, você pode usar o botão do navegador ou clicar em "Início" na barra de navegação que aparece no topo das tarefas.</p>
+                    <p>Você pode ver links de acesso aos relatórios Aquaflora, porém só o gerente têm permissão para visualizar as páginas. Se você selecioná-las, será redirecionado para uma página de acesso negado.</p>
+            </div>
+
+            <br>
+            <hr><br>
+            <div class='UMsection' id='cadas'>
+                <h3>4. Cadastro de Contas</h3>
+
+
+                <p>Como administrador, você pode criar novos usuários do tipo <i>staff</i> - contas de equipe para
+                    gerentes e colaboradores. Para isso, instrua o indivíduo que precisa de uma conta a fazer o
+                    seguinte:</p>
+                <ol>
+
+                    <li>Criar um cadastro no site normalmente, como se fosse um cliente, e informar-lhe o nome de
+                        usuário escolhido,</li>
+                    <b>ou</b>
+                    <li>Informar-lhe um nome de usuário, endereço de e-mail, e senha desejada. Você, entçao, criará uma
+                        conta no site normalmente. <span class='text-danger'>Essa é a opção menos segura pois a senha
+                            passa a ser seu conhecimento.</span></li>
+                </ol>
+                <p>Após a criação de uma conta comum, basta visitar o painel de administração, e navegar para "Contas"
+                    na seção "Contas e Autenticação". Lá, você terá acesso às contas criadas na Aquaflora. Procure pelo
+                    nome de usuário do membro de sua equipe, e selecione-o. Você será levado a uma página de edição.
+                    <span class='text-danger'>Senhas são criptografadas,</span> e nem mesmo você pode vê-las em sua
+                    forma sem criptografia, por razões de segurança. </p>
+                <p>Na página de edição, adicione o membro de sua equipe ao grupo apropriado: AquafloraAdmin, Colaborador
+                    ou Gerente. Abaixo, selecione a caixa "is_staff" para que o usuário seja marcado como membro da
+                    equipe. Não esqueça de salvar o cadatro.</p>
+            </div>
+ <br>
+            <hr><br>
+            <div class='UMsection' id='erros'>
+                <h3>5. Erros comuns</h3>
+                <p>Esta seção cobre erros comuns e como resolvê-los. </p>
+                <UL>
+                    <li class='h5'>Criei uma conta de equipe pelo painel de administração diretamente, mas o membro da equipe não consegue se autenticar. Por quê?</li>
+                    <p>Senhas são criptografadas no momento da criação de conta. Ao colocar uma senha diretamente no banco de dados, o sistema a trata como se estivesse criptografada. Então, quando o membro do sistema coloca sua senha no formulário de autenticação, o sistema irá encriptá-la e comparar com a senha criptografada gravada no banco de dados, e os resultados não vão ser iguais - resultando em acesso negado por senha errada. Por favor, crie conas para membros de equipe conforme descrito neste manual.</p>
+
+                    <li class='h5'>Não consigo me autenticar com nome de usuário e senha</li>
+                    <p>Por favor utilize o endereço de e-mail e senha para autenticar-se, e não o nome de usuário.</p>
+
+                    <li class='h5'>Outro erro</li>
+                    <p>Alguma solução</p>
+                    <li class='h5'>Outro erro</li>
+                    <p>Alguma solução</p>
+                    <li class='h5'>Outro erro</li>
+                    <p>Alguma solução</p>
+                </UL>
+            </div>
+
+    </div>
+</body>
+{% endblock %}

@@ -1,0 +1,137 @@
+
+{% extends "../base.html" %}
+{% load static %}
+{% block title %}Livraria Aquaflora | Sua Conta{% endblock %}
+
+{% block conteudo %}
+
+<main class="pt-5">
+    <div class="container" style="max-width: 1600px"> 
+        <div class="profcol col col-lg-6 mb-4 mb-lg-0">
+            <div class="card mb-3" style="border-radius: .5rem;">
+                <h1 class="h2">Editar endereço</h1>
+                <form name="address_form" class="account-form" method="POST" enctype="multipart/form-data">
+                    {% if form.errors %}
+                        <div class="alert alert-primary" role="alert">
+                            Erro! Revise o formulário.
+                        </div>
+                    {% endif %}
+
+                    {% csrf_token %}
+
+                    <label class="small fw-bold">Nome Completo: </label>
+                    <br>
+                    {{form.en_nomecompleto}}
+                    <br>
+                    <label class="small fw-bold">Telefone (opcional): </label>
+                    {{form.en_tel }}
+                    <br>
+
+                    <label class="small fw-bold">CEP</label>
+                    {{ form.en_cep }}
+                    <br>
+                    <label class="small fw-bold">Rua (incluindo número)</label>
+                    {{ form.en_rua }}
+                    <br>
+                    <label class="small fw-bold">Bairro</label>
+                    {{ form.en_bairro }}
+                    <br> 
+                    <label class="small fw-bold">Cidade</label>
+                    {{ form.en_cidade }}
+                    <br>
+                    <label class="small fw-bold">Estado</label>
+                    {{ form.en_estado }}
+                    <br>
+                    <label class="small fw-bold">Complemento (opcional)</label>
+                    {{ form.en_compl }}
+                    <br>
+                    
+                    <button class="btn btn-primary btn-block py-2 mb-4 mt-4 fw-bold w-100" type="button" value="Submit" onclick="submitForm()">
+                    Atualizar
+                    </button>
+                    <a class="btn btn-primary btn-block" role="button" href="{% url 'conta:enderecos' %}">Voltar para endereços</a>
+                </form>
+            </div>
+         </div>
+    </div>
+</main>
+
+{% endblock %}
+            
+{% block addscripts %} 
+    <script>
+    function submitForm() {
+        var form = document.getElementsByName('address_form')[0];
+        form.submit();
+        form.reset();
+        return false;
+    }
+    </script>
+
+    
+    <script>
+
+    function limpa_formulário_cep() {
+            //Limpa valores do formulário de cep.
+            document.getElementById('en_rua').value=("");
+            document.getElementById('en_bairro').value=("");
+            document.getElementById('en_cidade').value=("");
+            document.getElementById('en_estado').value=("");
+            console.log('limpa formulaio called') 
+    };
+
+    function callback(conteudo) {
+        if (!("erro" in conteudo)) {
+            //Atualiza os campos com os valores.
+            document.getElementById('en_rua').value=(conteudo.logradouro);
+            document.getElementById('en_bairro').value=(conteudo.bairro);
+            document.getElementById('en_cidade').value=(conteudo.localidade);
+            document.getElementById('en_estado').value=(conteudo.uf);
+            console.log('callback called, fell in if') 
+        } //end if.
+        else {
+            //CEP não Encontrado.
+            limpa_formulário_cep();
+            alert("CEP não encontrado.");
+            console. log('callback called, fell in else - CEP não encontrado') 
+        }
+    };    
+
+    function getaddress() {
+        console. log('getaddress called') 
+        var en_cep = document.getElementById("en_cep").value.toString()
+        var en_rua = document.getElementById("en_rua")
+        var en_bairro = document.getElementById("en_bairro")
+        var en_cidade = document.getElementById("en_cidade")
+        var en_estado = document.getElementById("en_estado")
+        console.log('vars done, encep = ' + en_cep) 
+        en_cep = en_cep.replace(/\D/g, '');
+        console.log('clear cep passed, encep clear= ' + en_cep) 
+        var validacep = /^[0-9]{8}$/;
+        console.log('valida cep passed. value:' + validacep.test(en_cep)) 
+
+        if(validacep.test(en_cep)){
+            
+            document.getElementById('en_rua').value='...';
+            document.getElementById('en_bairro').value='...';
+            document.getElementById('en_cidade').value='...';
+            document.getElementById('en_estado').value='...';
+            console.log('fell in validacep if') 
+
+            var script = document.createElement('script');
+
+            script.src = 'https://viacep.com.br/ws/'+ en_cep + '/json/?callback=callback';
+            document.body.appendChild(script);
+            console.log('script appended') 
+
+        }
+         else {
+            //cep é inválido.
+            limpa_formulário_cep();
+            alert("Formato de CEP inválido.");
+            console.log('fell in ELSE from getaddress, invalid cep') 
+        }
+    };
+
+    </script>
+{% endblock %}
